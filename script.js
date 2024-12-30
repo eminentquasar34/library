@@ -47,7 +47,22 @@ function showRoster() {
 }
 
 const addPlayerUI = document.getElementById("newPlayer");
-addPlayerUI.addEventListener("click", function () {});
+const dialog = document.getElementById("addPlayerDialog");
+addPlayerUI.addEventListener("click", function () {
+  dialog.showModal();
+});
+const form = document.querySelector(".addPlayerForm");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  addPlayerToRoster(
+    event.target.inputPlayerName.value,
+    event.target.inputPlayerNumber.value,
+    event.target.inputPlayerPosition.value
+  );
+  showRoster();
+  form.reset();
+  dialog.close();
+});
 
 addPlayerToRoster("DK Metcalf", "WR", "14");
 addPlayerToRoster("Geno Smith", "QB", "7");
